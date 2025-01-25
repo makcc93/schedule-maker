@@ -75,7 +75,7 @@ public class ScheduleGeneratorAndFileExporter {
         while (isRunning) {
             System.out.println(".:: EXPORT PLIKU ::.");
             System.out.println("[1] Export do pliku .CSV");
-            System.out.println("[2] Export do pliku Excel (.XML)");
+            System.out.println("[2] Export do pliku .XLS (Excel)");
             System.out.println("[9] Wyjście");
 
             int switchChoice = inputHandler.getInt();
