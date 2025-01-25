@@ -4,20 +4,20 @@ public class SpecialEmployeesSet implements EmployeeManagerActions{
 
     @Override
     public void execute(EmployeeListsMatcher employeeListsMatcher, InputHandler inputHandler) {
-        Employee employee1 = new Employee("10005850", "Mateusz", "Kruk", false, true);
-        Employee employee2 = new Employee("10005333", "Damian", "Mrozicki", false, true);
-        Employee employee4 = new Employee("10004381", "Filip", "Kamiński", true, false);
-        Employee employee5 = new Employee("10022760", "Tomasz", "Zając", true, false);
-        Employee employee6 = new Employee("10018110", "Martyna", "Nowicka", true, false);
-        Employee employee10 = new Employee("10028313", "Honorata", "Kosowska", false, false);
-        Employee employee11 = new Employee("10021920", "Michał", "Kozik", false, false);
-        Employee employee12 = new Employee("10014069", "Marcin ", "Przepiórka", false, false);
-        Employee employee7 = new Employee("10020408", "Agnieszka", "Grajper-Wolak", true, false);
-        Employee employee8 = new Employee("10025502", "Katalin", "Jobbagy", true, false);
-        Employee employee9 = new Employee("10026100", "Michał", "Woch", true, false);
-        Employee employee3 = new Employee("10001795", "Monika", "Baran", false, true);
-        Employee employee13 = new Employee("10031234", "Monika", "Szydłowska", false, false);
-        Employee employee14 = new Employee("10032133", "Wojciech", "Pietruszka", false, false);
+        Employee employee1 = new Employee("1", "Mateusz", "Nowak", false, true);
+        Employee employee2 = new Employee("2", "Damian", "Kowalski", false, true);
+        Employee employee4 = new Employee("3", "Filip", "Wiśniewski", true, false);
+        Employee employee5 = new Employee("4", "Tomasz", "Dąb", true, false);
+        Employee employee6 = new Employee("5", "Martyna", "Koza", true, false);
+        Employee employee10 = new Employee("6", "Honorata", "Lisowska", false, false);
+        Employee employee11 = new Employee("7", "Michał", "Dzikowski", false, false);
+        Employee employee12 = new Employee("8", "Marcin ", "Niebo", false, false);
+        Employee employee7 = new Employee("9", "Agnieszka", "Gaj", true, false);
+        Employee employee8 = new Employee("10", "Katarzyna", "Janiszek", true, false);
+        Employee employee9 = new Employee("11", "Michał", "Guz", true, false);
+        Employee employee3 = new Employee("12", "Monika", "Sowa", false, true);
+        Employee employee13 = new Employee("13", "Monika", "Noworolnik", false, false);
+        Employee employee14 = new Employee("14", "Wojciech", "Jakubowski", false, false);
 
         employeeListsMatcher.addEmployeeToList(employee1);
         employeeListsMatcher.addEmployeeToList(employee2);

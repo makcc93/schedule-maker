@@ -9,22 +9,6 @@ import java.util.List;
 
 public class FilterListOfEmployeesCantWork {
 
-//   public static List<Employee> runForEmployee(int dayOfMonth, EmployeeListsMatcher employeeListsMatcher,
-//                                               VacationAdder vacationAdder, EmployeeProposalFreeDays employeeProposalFreeDays,
-//                                               SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours,
-//                                               PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours,
-//                                               Map<Integer, Map<Employee, Shifts>> finalSchedule) {
-//
-//        List<Employee> employeesWithoutManagers = new ArrayList<>(employeeListsMatcher.getAllEmployeesWithoutManagers());
-//        RemoveEmployeeVacation.remove(dayOfMonth, vacationAdder, employeesWithoutManagers);
-//        RemoveEmployeeProposalDay.remove(dayOfMonth, employeesWithoutManagers, employeeProposalFreeDays);
-//        RemoveEmployeeOverWorked.remove(employeesWithoutManagers, employeeListsMatcher, sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours);
-//        RemoveEmployeeWorkedManyDaysInARow.remove(dayOfMonth, finalSchedule, employeesWithoutManagers);
-//
-//
-//        return employeesWithoutManagers;
-//    }
-
     public static List<Employee> notManagers(int dayOfMonth, EmployeeListsMatcher employeeListsMatcher,
                                              VacationAdder vacationAdder, EmployeeProposalFreeDays employeeProposalFreeDays,
                                              SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours,
