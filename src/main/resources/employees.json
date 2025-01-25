@@ -1,0 +1,30 @@
+[
+  {
+    "firstName": "Mateusz",
+    "lastName": "Kruk",
+    "sapNumber": "10005850",
+    "canOperateCredit": false,
+    "manager": true
+  },
+  {
+    "firstName": "Damian",
+    "lastName": "Mrozicki",
+    "sapNumber": "10005333",
+    "canOperateCredit": false,
+    "manager": true
+  },
+  {
+    "firstName": "Tomasz",
+    "lastName": "Zając",
+    "sapNumber": "10022760",
+    "canOperateCredit": true,
+    "manager": false
+  },
+  {
+    "firstName": "Marcin",
+    "lastName": "Przepriórka",
+    "sapNumber": "10014069",
+    "canOperateCredit": false,
+    "manager": false
+  }
+]
