@@ -180,10 +180,13 @@ public class SingleDayDraw {
     }
 
     public Map<Integer, Map<Employee, Shifts>> getFinalSchedule() {
+
         return finalSchedule;
     }
 
     public Map<Integer, SumOfShifts> getDayAndNumberOfEmployees() {
+
         return dayAndNumberOfEmployees;
     }
+
 }

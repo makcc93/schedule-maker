@@ -2,6 +2,7 @@ package pl.mateuszkruk.Menu.StepsInMenu;
 
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.Employee.EmployeeListsMatcher;
+import pl.mateuszkruk.ExportFile.ExcelFile.ExportToExcel;
 import pl.mateuszkruk.ExportFile.ExportToCSV;
 import pl.mateuszkruk.Messages.DefaultInSwitch;
 import pl.mateuszkruk.Messages.DrawLine;
@@ -90,7 +91,12 @@ public class ScheduleGeneratorAndFileExporter {
                             fileName);
                 }
                 case 2 -> {
-                    System.out.println("Przepraszamy, funkcjonalność w przygotowaniu. Skorzystaj z exportu .CSV!");
+                    String fileName = inputHandler.getString("Wpisz nazwę pliku: ");
+
+                    ExportToExcel.run(employeeListsMatcher,singleDayDraw.getFinalSchedule(),
+                            sumOfMonthlyEmployeeHours.getMapOfAllEmployeesHours(),
+                            singleDayDraw.getDayAndNumberOfEmployees(),
+                            fileName);
                 }
                 case 9 -> {
                   isRunning = false;

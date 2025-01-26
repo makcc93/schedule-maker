@@ -23,7 +23,8 @@ import pl.mateuszkruk.Schedule.DaysOfWeek;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        ExportToExcel exportToExcel = new ExportToExcel();
+
+
         InputHandler inputHandler = new InputHandler();
         EmployeeListsMatcher employeeListsMatcher = new EmployeeListsMatcher();
         SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder = new SpecificShiftToEmployeeAdder();
@@ -49,9 +50,8 @@ public class Main {
                 fullMonthScheduleGenerator,
                 setSpecificShiftToEmployee);
 
-//        mainMenu.run();
+        mainMenu.run();
 
-exportToExcel.run();
         inputHandler.closeScanner();
     }
 }

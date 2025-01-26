@@ -29,7 +29,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Imię i nazwisko: " + firstName + " " + lastName;
+        return firstName + " " + lastName;
     }
 
 }
