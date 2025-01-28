@@ -13,7 +13,7 @@ public class PrepareSortConvertListToMap {
                                                       SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours,
                                                       PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours){
         HashMap<Employee, Integer> employeesAndHours = new HashMap<>();
-        ConvertListToMapForDrawning.convertListToMap(employees,
+        ConvertListToMapWithRemainingHours.convertListToMap(employees,
                 employeesAndHours, sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours);
 
         return MapSorter.sortedMapByHoursAscending(employeesAndHours);

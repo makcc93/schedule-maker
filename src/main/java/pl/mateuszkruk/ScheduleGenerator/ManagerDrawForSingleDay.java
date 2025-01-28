@@ -9,6 +9,8 @@ import pl.mateuszkruk.UniversalMethods.*;
 import pl.mateuszkruk.WorkTime.*;
 
 import java.util.*;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Logger;
 
 public class ManagerDrawForSingleDay {
     private final EmployeeListsMatcher employeeListsMatcher;
@@ -20,6 +22,8 @@ public class ManagerDrawForSingleDay {
     private final ShiftRequirements shiftRequirements;
     private final SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder;
     private final int highRequirement = DaysOfWeek.getSaturdayRequirements();
+
+
 
 
     public ManagerDrawForSingleDay(EmployeeListsMatcher employeeListsMatcher,

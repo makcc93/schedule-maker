@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class MapSorter {
-    private SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours;
 
     public static LinkedHashMap<Employee, Integer> sortedMapByHoursAscending (Map<Employee, Integer> map){
 

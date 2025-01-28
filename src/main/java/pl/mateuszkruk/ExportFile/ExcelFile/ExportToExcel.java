@@ -35,16 +35,13 @@ public class ExportToExcel {
         rows.createEmployeeRowsWithHours(sheet,finalSchedule,sumOfHours);
         rows.createDailySumOfEmployees(sheet,dayAndNumberOfEmployees);
 
-
-
-
-
         try (FileOutputStream export = new FileOutputStream(fileName +".xls")){
             workbook.write(export);
             workbook.close();
 
             System.out.println("Plik wyeksportowany poprwanie");
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new RuntimeException(e);
         }
 
