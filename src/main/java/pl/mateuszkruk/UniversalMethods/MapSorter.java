@@ -19,17 +19,18 @@ public class MapSorter {
                     .sorted(Map.Entry.comparingByValue())
                     .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue,
                             (a1,a2) -> a1, LinkedHashMap::new));
+    }
+
+    public static LinkedHashMap<Employee,Integer> updateSorting (LinkedHashMap<Employee, Integer> map){
+        if (map.isEmpty() || map == null) {
+                return new LinkedHashMap<>();
         }
 
-        public static LinkedHashMap<Employee,Integer> updateSorting (LinkedHashMap<Employee, Integer> map){
-            if (map.isEmpty() || map == null) {
-                return new LinkedHashMap<>();
-            }
-
-            return map.entrySet()
+        return map.entrySet()
                     .stream()
                     .sorted(Map.Entry.comparingByValue())
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
                             (a1,a2) -> a1, LinkedHashMap::new));
-        }
+    }
+
 }

@@ -20,7 +20,7 @@ public class ConvertListToMapWithRemainingHours {
 
             for (Employee employee : employees) {
                 int remainingHours =
-                        sumOfMonthlyEmployeeHours.getSumOfEmployeeMonthlyHours(employee) -
+                                sumOfMonthlyEmployeeHours.getSumOfEmployeeMonthlyHours(employee) -
                                 personalMonthlyStandardWorkingHours.getPersonalMonthlyStandardWorkingHours(employee);
 
                 map.put(employee, remainingHours);

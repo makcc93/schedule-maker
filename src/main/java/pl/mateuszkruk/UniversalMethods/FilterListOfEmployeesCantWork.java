@@ -17,7 +17,7 @@ public class FilterListOfEmployeesCantWork {
         List<Employee> employeesWithoutManagers = new ArrayList<>(employeeListsMatcher.getAllEmployeesWithoutManagers());
         RemoveEmployeeVacation.remove(dayOfMonth, vacationAdder, employeesWithoutManagers);
         RemoveEmployeeProposalDay.remove(dayOfMonth, employeesWithoutManagers, employeeProposalFreeDays);
-        RemoveEmployeeOverWorked.remove(employeesWithoutManagers, employeeListsMatcher, sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours);
+        RemoveEmployeeOverWorked.remove(employeesWithoutManagers, sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours);
 
 
         return employeesWithoutManagers;
@@ -30,7 +30,7 @@ public class FilterListOfEmployeesCantWork {
         List<Employee> managers = new ArrayList<>(employeeListsMatcher.getManagerEmployees());
         RemoveEmployeeVacation.remove(dayOfMonth, vacationAdder, managers);
         RemoveEmployeeProposalDay.remove(dayOfMonth, managers, employeeProposalFreeDays);
-        RemoveEmployeeOverWorked.remove(managers, employeeListsMatcher, sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours);
+        RemoveEmployeeOverWorked.remove(managers, sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours);
 
         return managers;
     }
@@ -42,7 +42,7 @@ public class FilterListOfEmployeesCantWork {
         List<Employee> creditEmployees = new ArrayList<>(employeeListsMatcher.getCreditEmployees());
         RemoveEmployeeVacation.remove(dayOfMonth, vacationAdder, creditEmployees);
         RemoveEmployeeProposalDay.remove(dayOfMonth, creditEmployees, employeeProposalFreeDays);
-        RemoveEmployeeOverWorked.remove(creditEmployees, employeeListsMatcher, sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours);
+        RemoveEmployeeOverWorked.remove(creditEmployees,sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours);
 
         return creditEmployees;
     }
