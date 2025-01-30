@@ -12,9 +12,9 @@ public class RemoveEmployeeSpecificShift {
     public static void remove(List<Employee> employees,
                               SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder,
                               int dayOfMonth){
-        if (specificShiftToEmployeeAdder.getSpecificShifts().containsKey(dayOfMonth)){
+        if (specificShiftToEmployeeAdder.getSpecificShiftsByDay().containsKey(dayOfMonth)){
 
-                Map<Employee, Shifts> map = specificShiftToEmployeeAdder.getSpecificShifts().get(dayOfMonth);
+                Map<Employee, Shifts> map = specificShiftToEmployeeAdder.getSpecificShiftsByDay().get(dayOfMonth);
 
                 for (Map.Entry<Employee,Shifts> insideMap : map.entrySet()){
                     Employee employee = insideMap.getKey();

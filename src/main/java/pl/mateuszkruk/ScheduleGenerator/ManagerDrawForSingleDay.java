@@ -9,8 +9,6 @@ import pl.mateuszkruk.UniversalMethods.*;
 import pl.mateuszkruk.WorkTime.*;
 
 import java.util.*;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Logger;
 
 public class ManagerDrawForSingleDay {
     private final EmployeeListsMatcher employeeListsMatcher;
@@ -74,8 +72,8 @@ public class ManagerDrawForSingleDay {
                 managerOpenAndClose = true;
             }
             else {
-                if (specificShiftToEmployeeAdder.getSpecificShifts().get(dayOfMonth) != null) {
-                    Map<Employee, Shifts> map = specificShiftToEmployeeAdder.getSpecificShifts().get(dayOfMonth);
+                if (specificShiftToEmployeeAdder.getSpecificShiftsByDay().get(dayOfMonth) != null) {
+                    Map<Employee, Shifts> map = specificShiftToEmployeeAdder.getSpecificShiftsByDay().get(dayOfMonth);
 
                     for (Map.Entry<Employee, Shifts> employeesShift : map.entrySet()) {
                         Employee employee = employeesShift.getKey();

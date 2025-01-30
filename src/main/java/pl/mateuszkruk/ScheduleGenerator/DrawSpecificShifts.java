@@ -30,9 +30,9 @@ public class DrawSpecificShifts {
             sumOfMorningShifts = 0;
             sumOfAfternoonShifts = 0;
 
-            if (specificShiftToEmployeeAdder.getSpecificShifts().containsKey(dayOfMonth)) {
+            if (specificShiftToEmployeeAdder.getSpecificShiftsByDay().containsKey(dayOfMonth)) {
 
-                    Map<Employee, Shifts> employeeShift = specificShiftToEmployeeAdder.getSpecificShifts().get(dayOfMonth);
+                    Map<Employee, Shifts> employeeShift = specificShiftToEmployeeAdder.getSpecificShiftsByDay().get(dayOfMonth);
 
                     for (Map.Entry<Employee, Shifts> map : employeeShift.entrySet()) {
                         Employee employee = map.getKey();

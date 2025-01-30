@@ -17,7 +17,7 @@ public class SpecificShiftToEmployeeAdder {
         specificShifts.put(dayOfMonth,employeeShift);
     }
 
-    public Map<Integer, Map<Employee, Shifts>> getSpecificShifts() {
+    public Map<Integer, Map<Employee, Shifts>> getSpecificShiftsByDay() {
         return specificShifts;
     }
 }
