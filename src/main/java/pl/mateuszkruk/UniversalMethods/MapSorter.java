@@ -10,8 +10,11 @@ public class MapSorter {
 
     public static LinkedHashMap<Employee, Integer> sortedMapByHoursAscending (Map<Employee, Integer> map){
 
-        if (map.isEmpty() || map == null) {
+        if (map.isEmpty()) {
             return new LinkedHashMap<>();
+        }
+        if (map == null){
+            throw new NullPointerException("Map cannot be null!");
         }
 
         return map.entrySet()
@@ -22,8 +25,11 @@ public class MapSorter {
     }
 
     public static LinkedHashMap<Employee,Integer> updateSorting (LinkedHashMap<Employee, Integer> map){
-        if (map.isEmpty() || map == null) {
+        if (map.isEmpty()) {
                 return new LinkedHashMap<>();
+        }
+        if (map == null){
+            throw new NullPointerException("Map cannot be null!");
         }
 
         return map.entrySet()
