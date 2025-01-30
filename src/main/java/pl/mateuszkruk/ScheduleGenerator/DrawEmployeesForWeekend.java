@@ -26,7 +26,7 @@ public class DrawEmployeesForWeekend {
                 break;
             }
 
-            sortedEmployees = MapSorter.updateSorting(sortedEmployees);
+            sortedEmployees = MapSorter.sortedMapByHoursAscending(sortedEmployees);
 
             if (sortedEmployees.isEmpty()) {
                 EmptyListOfEmployees.showMessage();

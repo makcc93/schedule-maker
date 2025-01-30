@@ -90,7 +90,7 @@ public class SingleDayDraw {
                         break;
                     }
 
-                    lowestHoursWorkedEmployees = MapSorter.updateSorting(lowestHoursWorkedEmployees);
+                    lowestHoursWorkedEmployees = MapSorter.sortedMapByHoursAscending(lowestHoursWorkedEmployees);
                         if (lowestHoursWorkedEmployees.isEmpty()) {
                             EmptyListOfEmployees.showMessage("Dzień: " + dayOfMonth);
                             break;
@@ -123,7 +123,7 @@ public class SingleDayDraw {
 
                     if (dayRequirement == sumOfMorningShifts && dayRequirement > sumOfAfternoonShifts) {
 
-                        lowestHoursWorkedEmployees = MapSorter.updateSorting(lowestHoursWorkedEmployees);
+                        lowestHoursWorkedEmployees = MapSorter.sortedMapByHoursAscending(lowestHoursWorkedEmployees);
                             if (lowestHoursWorkedEmployees.isEmpty()) {
                                 EmptyListOfEmployees.showMessage("Dzień: " + dayOfMonth);
                                 break;
@@ -139,7 +139,7 @@ public class SingleDayDraw {
                     }
                     else if (dayRequirement > sumOfMorningShifts && dayRequirement == sumOfAfternoonShifts) {
 
-                        lowestHoursWorkedEmployees = MapSorter.updateSorting(lowestHoursWorkedEmployees);
+                        lowestHoursWorkedEmployees = MapSorter.sortedMapByHoursAscending(lowestHoursWorkedEmployees);
                             if (lowestHoursWorkedEmployees.isEmpty()) {
                                 EmptyListOfEmployees.showMessage("Dzień: " + dayOfMonth);
                                 break;

@@ -90,7 +90,7 @@ public class ManagerDrawForSingleDay {
                 }
 
                 if (WeekendDayChecker.checkDay(thisDay, dayRequirement, highRequirement)) {
-                    lowestHoursWorkedManagers = MapSorter.updateSorting(lowestHoursWorkedManagers);
+                    lowestHoursWorkedManagers = MapSorter.sortedMapByHoursAscending(lowestHoursWorkedManagers);
 
                     if (lowestHoursWorkedManagers.isEmpty()) {
                         EmptyListOfEmployees.showMessage(" dzień: "+ dayOfMonth);
@@ -103,7 +103,7 @@ public class ManagerDrawForSingleDay {
                                                 employeesForSingleDayMap, sumOfMonthlyEmployeeHours);
                 }
 
-                lowestHoursWorkedManagers = MapSorter.updateSorting(lowestHoursWorkedManagers);
+                lowestHoursWorkedManagers = MapSorter.sortedMapByHoursAscending(lowestHoursWorkedManagers);
 
                 if (lowestHoursWorkedManagers.isEmpty()) {
                         EmptyListOfEmployees.showMessage(" dzień: "+ dayOfMonth);
@@ -116,7 +116,7 @@ public class ManagerDrawForSingleDay {
                 MatchShiftWithEmployee.run(lowestHoursEmployee, randomShift, lowestHoursWorkedManagers,
                                             employeesForSingleDayMap, sumOfMonthlyEmployeeHours);
 
-                lowestHoursWorkedManagers = MapSorter.updateSorting(lowestHoursWorkedManagers);
+                lowestHoursWorkedManagers = MapSorter.sortedMapByHoursAscending(lowestHoursWorkedManagers);
 
                 if (!randomShift.isOpenStore() || !randomShift.isCloseStore()) {
                         if (lowestHoursWorkedManagers.isEmpty()) {
