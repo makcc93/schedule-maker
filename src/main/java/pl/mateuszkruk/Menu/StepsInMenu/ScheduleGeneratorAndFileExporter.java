@@ -8,6 +8,7 @@ import pl.mateuszkruk.Messages.DefaultInSwitch;
 import pl.mateuszkruk.Messages.DrawLine;
 import pl.mateuszkruk.Schedule.Shifts;
 import pl.mateuszkruk.ScheduleGenerator.FullMonthScheduleGenerator;
+import pl.mateuszkruk.ScheduleGenerator.ScheduleDone;
 import pl.mateuszkruk.ScheduleGenerator.SingleDayDraw;
 import pl.mateuszkruk.UserInput.InputHandler;
 import pl.mateuszkruk.WorkTime.SumOfMonthlyEmployeeHours;
@@ -31,6 +32,7 @@ public class ScheduleGeneratorAndFileExporter {
         this.singleDayDraw = singleDayDraw;
         this.fullMonthScheduleGenerator = fullMonthScheduleGenerator;
     }
+
     public void run() {
         DrawLine.draw();
 
@@ -38,7 +40,9 @@ public class ScheduleGeneratorAndFileExporter {
         boolean isRunning = inputHandler.getBoolean("       Aby wygenerować grafik pracy wedle podanych wcześniej informacji wciśnij 1, jeśli nie wciśnij 0.");
         while (isRunning) {
             fullMonthScheduleGenerator.generateFullMonthSchedule();
+
             System.out.println("Grafik wygenerowany poprawnie!");
+            ScheduleDone.setScheduleDone(true);
 
 
             boolean showSchedule = inputHandler.getBoolean("Jeśli chcesz wyświetlić utworzony grafik wciśnij 1, jeśli nie wciśnij 0.");

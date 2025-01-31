@@ -157,20 +157,32 @@ public class MainMenu {
                                 break;
                             }
 
+                            if (ScheduleDone.isScheduleDone()){
+                                System.out.println("Grafik już został wcześniej utworzony!");
+                                break;
+                            }
+
                             setFirstDayAndLengthOfMonth.run();
                                 DrawStepsInMainMenu.firstDone();
+
                             hoursCountAndOverWorking.run();
                                 DrawStepsInMainMenu.secondDone();
+
                             employeeRequirements.run();
                                 DrawStepsInMainMenu.thirdDone();
+
                             daysOffFromWork.run();
                                 DrawStepsInMainMenu.fourthDone();
+
                             vacationAndProposalFreeDays.run();
                                 DrawStepsInMainMenu.fifthDone();
+
                             chooseDrawPriority.run();
                                 DrawStepsInMainMenu.sixthDone();
+
                             setSpecificShiftToEmployee.run();
                                 DrawStepsInMainMenu.seventhDone();
+
                             scheduleGeneratorAndFileExporter.run();
                     }
                     case 5 -> {
