@@ -16,8 +16,8 @@ public class CreditEmployeeDrawForSingleDay {
     private final EmployeeListsMatcher employeeListsMatcher;
     private final VacationAdder vacationAdder;
     protected int numberOfCreditEmployees;
-    protected int morningSumOfEmployyes;
-    protected int afternoonSumOfEmployyes;
+    protected int morningSumOfEmployees;
+    protected int afternoonSumOfEmployees;
     ArrayList<Employee> chosenCreditEmployee;
 
     public CreditEmployeeDrawForSingleDay(EmployeeListsMatcher employeeListsMatcher,
@@ -37,8 +37,8 @@ public class CreditEmployeeDrawForSingleDay {
     public void drawCreditEmployee(Map<Employee, Shifts> employeesForSingleDayMap, int dayOfMonth) {
 
         numberOfCreditEmployees = 0;
-        morningSumOfEmployyes = 0;
-        afternoonSumOfEmployyes = 0;
+        morningSumOfEmployees = 0;
+        afternoonSumOfEmployees = 0;
         int lowestCreditEmployeeNeeded = 1;
 
         chosenCreditEmployee = new ArrayList<>();
@@ -62,19 +62,19 @@ public class CreditEmployeeDrawForSingleDay {
             MatchShiftWithEmployee.run(employee,allDayShifts,lowestHoursWorkedCreditEmployees,
                                         employeesForSingleDayMap,sumOfMonthlyEmployeeHours);
 
-            morningSumOfEmployyes++;
-            afternoonSumOfEmployyes++;
+            morningSumOfEmployees++;
+            afternoonSumOfEmployees++;
             numberOfCreditEmployees++;
             chosenCreditEmployee.add(employee);
         }
     }
 
-    public int getMorningSumOfEmployyes() {
-        return morningSumOfEmployyes;
+    public int getMorningSumOfEmployees() {
+        return morningSumOfEmployees;
     }
 
-    public int getAfternoonSumOfEmployyes() {
-        return afternoonSumOfEmployyes;
+    public int getAfternoonSumOfEmployees() {
+        return afternoonSumOfEmployees;
     }
 
     public ArrayList<Employee> getChosenCreditEmployee() {

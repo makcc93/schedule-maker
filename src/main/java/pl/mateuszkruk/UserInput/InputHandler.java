@@ -61,10 +61,11 @@ public class InputHandler {
     public boolean getBoolean(){
         while(true){
             int choice = getInt();
-            if(choice==1){
+
+            if(choice == 1){
                 return true;
             }
-            else if(choice==0){
+            else if(choice == 0){
                 return false;
             }
             else{

@@ -70,7 +70,7 @@ public class RemoveEmployeeOverWorkedTest {
     public void listIsNULL(){
         List<Employee> employees = null;
 
-        assertThrows(IllegalArgumentException.class, () ->{ RemoveEmployeeOverWorked.remove(employees,mockSumOfMonthlyHours,mockPersonalMonthlyStandard); },"lista jest nullem");
+        assertThrows(NullPointerException.class, () ->{ RemoveEmployeeOverWorked.remove(employees,mockSumOfMonthlyHours,mockPersonalMonthlyStandard); },"lista jest nullem");
 
     }
 }

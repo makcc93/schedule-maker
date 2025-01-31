@@ -1,5 +1,6 @@
 package pl.mateuszkruk.UniversalMethods;
 
+import com.google.common.base.Preconditions;
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.WorkTime.PersonalMonthlyStandardWorkingHours;
 import pl.mateuszkruk.WorkTime.SumOfMonthlyEmployeeHours;
@@ -10,21 +11,18 @@ import java.util.Map;
 public class ConvertListToMapWithRemainingHours {
 
     public static void convertListToMap(List<Employee> employees,
-                            Map<Employee, Integer> map,
-                            SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours,
-                            PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours){
+                                        Map<Employee, Integer> map,
+                                        SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours,
+                                        PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours){
+        Preconditions.checkNotNull(employees,"List of employees cannot be null!");
 
-        if (employees == null) {
-            throw new IllegalArgumentException("Lista pracowników nie może być null!");
-        }
-
-            for (Employee employee : employees) {
-                int remainingHours =
+        for (Employee employee : employees) {
+            int remainingHours =
                                 sumOfMonthlyEmployeeHours.getSumOfEmployeeMonthlyHours(employee) -
                                 personalMonthlyStandardWorkingHours.getPersonalMonthlyStandardWorkingHours(employee);
 
-                map.put(employee, remainingHours);
-            }
+            map.put(employee, remainingHours);
+        }
 
     }
 }

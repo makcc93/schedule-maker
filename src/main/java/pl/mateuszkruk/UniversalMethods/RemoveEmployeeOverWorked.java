@@ -1,5 +1,6 @@
 package pl.mateuszkruk.UniversalMethods;
 
+import com.google.common.base.Preconditions;
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.WorkTime.OverWorkingHours;
 import pl.mateuszkruk.WorkTime.PersonalMonthlyStandardWorkingHours;
@@ -16,9 +17,7 @@ public class RemoveEmployeeOverWorked {
                               PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours
                               ){
 
-        if (employees == null){
-            throw new IllegalArgumentException("Employees is NULL!");
-        }
+        Preconditions.checkNotNull(employees,"List of employees cannot be null!");
 
         Iterator<Employee> iterator = employees.iterator();
         while (iterator.hasNext()){

@@ -1,5 +1,6 @@
 package pl.mateuszkruk.UniversalMethods;
 
+import com.google.common.base.Preconditions;
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.Schedule.Shifts;
 
@@ -13,6 +14,9 @@ public class RemoveEmployeeWorkedManyDaysInARow {
                               Map<Integer, Map<Employee, Shifts>> finalSchedule,
                               List<Employee> copyEmployeeList) {
         int DaysInARow = 5;
+        Preconditions.checkArgument(dayOfMonth > 0, "Day cannot be zero or less!");
+        Preconditions.checkNotNull(finalSchedule, "Monthly Schedule cannot be null!");
+        Preconditions.checkNotNull(copyEmployeeList, "List of employees cannot be null!");
 
 
         if (dayOfMonth > DaysInARow) {

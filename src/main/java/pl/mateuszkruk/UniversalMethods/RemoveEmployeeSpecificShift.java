@@ -1,5 +1,6 @@
 package pl.mateuszkruk.UniversalMethods;
 
+import com.google.common.base.Preconditions;
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.Schedule.Shifts;
 import pl.mateuszkruk.WorkTime.SpecificShiftToEmployeeAdder;
@@ -12,6 +13,8 @@ public class RemoveEmployeeSpecificShift {
     public static void remove(List<Employee> employees,
                               SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder,
                               int dayOfMonth){
+        Preconditions.checkNotNull(employees,"List of employees cannot be null!");
+
         if (specificShiftToEmployeeAdder.getSpecificShiftsByDay().containsKey(dayOfMonth)){
 
                 Map<Employee, Shifts> map = specificShiftToEmployeeAdder.getSpecificShiftsByDay().get(dayOfMonth);

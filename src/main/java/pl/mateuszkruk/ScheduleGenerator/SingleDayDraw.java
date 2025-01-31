@@ -70,9 +70,9 @@ public class SingleDayDraw {
             drawSpecificShifts.draw(employeesForSingleDay,lowestHoursWorkedEmployees,sumOfMonthlyEmployeeHours,dayOfMonth);
 
 
-            sumOfMorningShifts = creditEmployeeDrawForSingleDay.getMorningSumOfEmployyes() +
+            sumOfMorningShifts = creditEmployeeDrawForSingleDay.getMorningSumOfEmployees() +
                                     drawSpecificShifts.getSumOfMorningShifts();
-            sumOfAfternoonShifts = creditEmployeeDrawForSingleDay.getAfternoonSumOfEmployyes() +
+            sumOfAfternoonShifts = creditEmployeeDrawForSingleDay.getAfternoonSumOfEmployees() +
                                     drawSpecificShifts.getSumOfAfternoonShifts();
 
             if (WeekendDayChecker.checkDay(thisDay,dayRequirement,highRequirement)) {

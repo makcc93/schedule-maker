@@ -84,7 +84,7 @@ public class RemoveEmployeeProposalDayTest {
 
     @Test
     public void checkEmployeeIsNull(){
-        int dayOfMonth = 2;
+        int dayOfMonth = 1;
 
         proposalDays.remove(employee1);
         proposalDays.remove(employee2);
@@ -99,7 +99,7 @@ public class RemoveEmployeeProposalDayTest {
 
         RemoveEmployeeProposalDay.remove(dayOfMonth,employees,mockEmployeeProposal);
 
-        List<Employee> expectedList = List.of(employee1,employee2,employee3);
+        List<Employee> expectedList = List.of(employee2,employee3);
 
         assertEquals(expectedList,employees);
     }

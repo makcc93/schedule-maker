@@ -68,6 +68,6 @@ public class ConvertListToMapWithRemainingHoursTest {
     SumOfMonthlyEmployeeHours mockSumOfMonthlyHours = mock(SumOfMonthlyEmployeeHours.class);
     PersonalMonthlyStandardWorkingHours mockPersonalMonthlyHours = mock(PersonalMonthlyStandardWorkingHours.class);
 
-    assertThrows(IllegalArgumentException.class, () -> { ConvertListToMapWithRemainingHours.convertListToMap(employees,returnedMap,mockSumOfMonthlyHours,mockPersonalMonthlyHours);}, "Wyjątek dla null w liście pracowników");
+    assertThrows(NullPointerException.class, () -> { ConvertListToMapWithRemainingHours.convertListToMap(employees,returnedMap,mockSumOfMonthlyHours,mockPersonalMonthlyHours);}, "Wyjątek dla null w liście pracowników");
 }
 }
