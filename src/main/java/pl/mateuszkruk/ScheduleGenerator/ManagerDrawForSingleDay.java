@@ -19,6 +19,7 @@ public class ManagerDrawForSingleDay {
     private final FirstDayAndLenghtOfMonth firstDayAndLenghtOfMonth;
     private final ShiftRequirements shiftRequirements;
     private final SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder;
+    private final SingleDayDraw singleDayDraw;
     private final int highRequirement = DaysOfWeek.getSaturdayRequirements();
 
 
@@ -31,8 +32,8 @@ public class ManagerDrawForSingleDay {
                                    EmployeeProposalFreeDays employeeProposalFreeDays,
                                    FirstDayAndLenghtOfMonth firstDayAndLenghtOfMonth,
                                    ShiftRequirements shiftRequirements,
-                                   SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder
-                                   ) {
+                                   SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder, SingleDayDraw singleDayDraw
+    ) {
         this.employeeListsMatcher = employeeListsMatcher;
         this.sumOfMonthlyEmployeeHours = sumOfMonthlyEmployeeHours;
         this.vacationAdder = vacationAdder;
@@ -41,6 +42,7 @@ public class ManagerDrawForSingleDay {
         this.firstDayAndLenghtOfMonth = firstDayAndLenghtOfMonth;
         this.shiftRequirements = shiftRequirements;
         this.specificShiftToEmployeeAdder = specificShiftToEmployeeAdder;
+        this.singleDayDraw = singleDayDraw;
     }
 
     public void drawManager(Map<Employee, Shifts> employeesForSingleDayMap, int dayOfMonth) {
@@ -48,7 +50,7 @@ public class ManagerDrawForSingleDay {
         int dayRequirement = shiftRequirements.getSpecificDayRequirements(dayOfMonth);
 
         List<Employee> filteredEmployees = FilterListOfEmployeesCantWork.managers(dayOfMonth, employeeListsMatcher, vacationAdder,
-                employeeProposalFreeDays, sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours);
+                employeeProposalFreeDays, sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours,singleDayDraw.getFinalSchedule());
 
         LinkedHashMap<Employee, Integer> lowestHoursWorkedManagers = PrepareSortConvertListToMap.run(filteredEmployees,
                 sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours);

@@ -15,6 +15,7 @@ public class CreditEmployeeDrawForSingleDay {
     private final SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours;
     private final EmployeeListsMatcher employeeListsMatcher;
     private final VacationAdder vacationAdder;
+    private final SingleDayDraw singleDayDraw;
     protected int numberOfCreditEmployees;
     protected int morningSumOfEmployees;
     protected int afternoonSumOfEmployees;
@@ -25,13 +26,14 @@ public class CreditEmployeeDrawForSingleDay {
                                           PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours,
                                           VacationAdder vacationAdder,
                                           EmployeeProposalFreeDays employeeProposalFreeDays,
-                                          SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder){
+                                          SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder, SingleDayDraw singleDayDraw){
         this.employeeListsMatcher = employeeListsMatcher;
         this.sumOfMonthlyEmployeeHours = sumOfMonthlyEmployeeHours;
         this.personalMonthlyStandardWorkingHours = personalMonthlyStandardWorkingHours;
         this.vacationAdder = vacationAdder;
         this.employeeProposalFreeDays=employeeProposalFreeDays;
         this.specificShiftToEmployeeAdder = specificShiftToEmployeeAdder;
+        this.singleDayDraw = singleDayDraw;
     }
 
     public void drawCreditEmployee(Map<Employee, Shifts> employeesForSingleDayMap, int dayOfMonth) {
@@ -43,7 +45,7 @@ public class CreditEmployeeDrawForSingleDay {
 
         chosenCreditEmployee = new ArrayList<>();
         List<Employee> creditEmployees = FilterListOfEmployeesCantWork.creditEmployees(dayOfMonth,employeeListsMatcher,
-                vacationAdder,employeeProposalFreeDays, sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours);
+                vacationAdder,employeeProposalFreeDays, sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours,singleDayDraw.getFinalSchedule());
         RemoveEmployeeSpecificShift.remove(creditEmployees,specificShiftToEmployeeAdder,dayOfMonth);
 
         LinkedHashMap<Employee, Integer> lowestHoursWorkedCreditEmployees = PrepareSortConvertListToMap.run(

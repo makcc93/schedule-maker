@@ -2,22 +2,25 @@ package pl.mateuszkruk.UniversalMethods;
 
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.Employee.EmployeeListsMatcher;
+import pl.mateuszkruk.Schedule.Shifts;
 import pl.mateuszkruk.WorkTime.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class FilterListOfEmployeesCantWork {
 
     public static List<Employee> notManagers(int dayOfMonth, EmployeeListsMatcher employeeListsMatcher,
                                              VacationAdder vacationAdder, EmployeeProposalFreeDays employeeProposalFreeDays,
                                              SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours,
-                                             PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours) {
+                                             PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours,
+                                             Map<Integer, Map<Employee, Shifts>> schedule) {
 
         List<Employee> employeesWithoutManagers = new ArrayList<>(employeeListsMatcher.getAllEmployeesWithoutManagers());
 
         removingSet(dayOfMonth,vacationAdder,employeeProposalFreeDays,sumOfMonthlyEmployeeHours,
-                personalMonthlyStandardWorkingHours,employeesWithoutManagers);
+                personalMonthlyStandardWorkingHours,employeesWithoutManagers,schedule);
 
         return employeesWithoutManagers;
     }
@@ -25,11 +28,12 @@ public class FilterListOfEmployeesCantWork {
     public static List<Employee> managers(int dayOfMonth, EmployeeListsMatcher employeeListsMatcher,
                                           VacationAdder vacationAdder, EmployeeProposalFreeDays employeeProposalFreeDays,
                                           SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours,
-                                          PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours) {
+                                          PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours,
+                                          Map<Integer, Map<Employee, Shifts>> schedule) {
         List<Employee> managers = new ArrayList<>(employeeListsMatcher.getManagerEmployees());
 
         removingSet(dayOfMonth,vacationAdder,employeeProposalFreeDays,sumOfMonthlyEmployeeHours,
-        personalMonthlyStandardWorkingHours,managers);
+        personalMonthlyStandardWorkingHours,managers,schedule);
 
         return managers;
     }
@@ -37,11 +41,12 @@ public class FilterListOfEmployeesCantWork {
     public static List<Employee> creditEmployees(int dayOfMonth, EmployeeListsMatcher employeeListsMatcher,
                                           VacationAdder vacationAdder, EmployeeProposalFreeDays employeeProposalFreeDays,
                                           SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours,
-                                          PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours) {
+                                          PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours,
+                                                 Map<Integer, Map<Employee, Shifts>> schedule) {
         List<Employee> creditEmployees = new ArrayList<>(employeeListsMatcher.getCreditEmployees());
 
         removingSet(dayOfMonth,vacationAdder,employeeProposalFreeDays, sumOfMonthlyEmployeeHours,
-                    personalMonthlyStandardWorkingHours,creditEmployees);
+                    personalMonthlyStandardWorkingHours,creditEmployees,schedule);
 
         return creditEmployees;
     }
@@ -50,9 +55,12 @@ public class FilterListOfEmployeesCantWork {
                                     EmployeeProposalFreeDays employeeProposalFreeDays,
                                     SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours,
                                     PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours,
-                                    List<Employee> employees){
+                                    List<Employee> employees,
+                                    Map<Integer, Map<Employee, Shifts>> schedule){
+
         RemoveEmployeeVacation.remove(day,vacationAdder,employees);
         RemoveEmployeeProposalDay.remove(day,employees,employeeProposalFreeDays);
         RemoveEmployeeOverWorked.remove(employees,sumOfMonthlyEmployeeHours,personalMonthlyStandardWorkingHours);
+        RemoveEmployeeWorkedManyDaysInARow.remove(day,schedule,employees);
     }
 }

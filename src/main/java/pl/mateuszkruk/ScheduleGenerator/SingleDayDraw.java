@@ -45,8 +45,8 @@ public class SingleDayDraw {
         this.personalMonthlyStandardWorkingHours = personalMonthlyStandardWorkingHours;
         this.drawSpecificShifts = drawSpecificShifts;
         this.specificShiftToEmployeeAdder = specificShiftToEmployeeAdder;
-        this.managerDrawForSingleDay = new ManagerDrawForSingleDay(employeeListsMatcher, sumOfMonthlyEmployeeHours, vacationAdder, personalMonthlyStandardWorkingHours, employeeProposalFreeDays,firstDayAndLenghtOfMonth,shiftRequirements,specificShiftToEmployeeAdder);
-        this.creditEmployeeDrawForSingleDay = new CreditEmployeeDrawForSingleDay(employeeListsMatcher, sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours, vacationAdder, employeeProposalFreeDays, specificShiftToEmployeeAdder);
+        this.managerDrawForSingleDay = new ManagerDrawForSingleDay(employeeListsMatcher, sumOfMonthlyEmployeeHours, vacationAdder, personalMonthlyStandardWorkingHours, employeeProposalFreeDays,firstDayAndLenghtOfMonth,shiftRequirements,specificShiftToEmployeeAdder,this);
+        this.creditEmployeeDrawForSingleDay = new CreditEmployeeDrawForSingleDay(employeeListsMatcher, sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours, vacationAdder, employeeProposalFreeDays, specificShiftToEmployeeAdder,this);
         this.sumOfMonthlyEmployeeHours = sumOfMonthlyEmployeeHours;
         this.vacationAdder = vacationAdder;
         this.employeeProposalFreeDays = employeeProposalFreeDays;
@@ -61,7 +61,7 @@ public class SingleDayDraw {
         if (dayRequirement > 0) {
             List<Employee> filteredEmployees = FilterListOfEmployeesCantWork.notManagers(dayOfMonth,employeeListsMatcher,
                     vacationAdder,employeeProposalFreeDays,sumOfMonthlyEmployeeHours,
-                    personalMonthlyStandardWorkingHours);
+                    personalMonthlyStandardWorkingHours,getFinalSchedule());
 
             LinkedHashMap<Employee,Integer> lowestHoursWorkedEmployees = PrepareSortConvertListToMap.run(filteredEmployees,
                     sumOfMonthlyEmployeeHours,personalMonthlyStandardWorkingHours);
