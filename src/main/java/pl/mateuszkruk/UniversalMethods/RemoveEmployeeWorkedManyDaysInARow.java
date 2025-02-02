@@ -15,7 +15,6 @@ public class RemoveEmployeeWorkedManyDaysInARow {
                               Map<Integer, Map<Employee, Shifts>> finalSchedule,
                               List<Employee> copyEmployeeList) {
 
-
         Preconditions.checkArgument(dayOfMonth > 0, "Day cannot be zero or less!");
         Preconditions.checkNotNull(finalSchedule, "Monthly Schedule cannot be null!");
         Preconditions.checkNotNull(copyEmployeeList, "List of employees cannot be null!");

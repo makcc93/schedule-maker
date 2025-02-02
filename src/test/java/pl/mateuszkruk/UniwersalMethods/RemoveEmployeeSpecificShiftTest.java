@@ -55,8 +55,6 @@ public class RemoveEmployeeSpecificShiftTest {
 
         RemoveEmployeeSpecificShift.remove(employees,mockSpecificShiftAdder,day);
 
-        List<Employee> expected1List = List.of();
-
         List<Employee> expected2List = List.of(employee1,employee2,employee3);
 
         assertEquals(expected2List,employees);
@@ -84,7 +82,7 @@ public class RemoveEmployeeSpecificShiftTest {
 
         when(mockSpecificShiftAdder.getSpecificShiftsByDay()).thenReturn(employeeSpecificWorkDays);
 
-        assertDoesNotThrow(() -> {RemoveEmployeeSpecificShift.remove(employees,mockSpecificShiftAdder,day);},"do not throw a exeption");
+        assertDoesNotThrow(() -> {RemoveEmployeeSpecificShift.remove(employees,mockSpecificShiftAdder,day);},"do not throw a exception");
     }
 
 }

@@ -1,7 +1,5 @@
 package pl.mateuszkruk.UniwersalMethods;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.mateuszkruk.Employee.Employee;
@@ -14,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class RemoveEmployeeWorkedManyDaysInARowTest {
     Map<Integer, Map<Employee, Shifts>> schedule = new HashMap<>();
@@ -32,13 +32,14 @@ public class RemoveEmployeeWorkedManyDaysInARowTest {
     }
 
     @Test
-    public void removingWorkedLast5Days(){
+    public void removingWorkedLast4Days(){
         int day = 6;
         Map<Employee,Shifts> insideMap = new HashMap<>();
         Shifts allDay = Shifts.EIGHT_TO_TWENTY;
         insideMap.put(employee2,allDay);
 
-        schedule.put(1,insideMap);
+
+
         schedule.put(2,insideMap);
         schedule.put(3,insideMap);
         schedule.put(4,insideMap);
@@ -50,5 +51,57 @@ public class RemoveEmployeeWorkedManyDaysInARowTest {
 
         assertEquals(expectedList,employees);
 
+    }
+
+    @Test
+    public void emptyList(){
+        int day = 12;
+
+        employees = new ArrayList<>();
+        schedule = new HashMap<>();
+
+        RemoveEmployeeWorkedManyDaysInARow.remove(day,schedule,employees);
+
+        assertTrue(employees.isEmpty());
+    }
+
+    @Test
+    public void employeeIsNull(){
+        int day = 6;
+
+        Employee nullEmployee = null;
+        employees.add(nullEmployee);
+        Map<Employee,Shifts> insideMap = new HashMap<>();
+        Shifts allDay = Shifts.EIGHT_TO_TWENTY;
+        insideMap.put(nullEmployee,allDay);
+
+        schedule.put(2,insideMap);
+        schedule.put(3,insideMap);
+        schedule.put(4,insideMap);
+        schedule.put(5,insideMap);
+
+        RemoveEmployeeWorkedManyDaysInARow.remove(day,schedule,employees);
+
+        List<Employee> expectedList = List.of(employee1,employee2,employee3);
+
+        assertEquals(expectedList,employees);
+    }
+
+    @Test
+    public void dayIsZero(){
+        int day = 0;
+        Map<Employee,Shifts> insideMap = new HashMap<>();
+        Shifts allDay = Shifts.EIGHT_TO_TWENTY;
+        insideMap.put(employee2,allDay);
+
+
+
+        schedule.put(2,insideMap);
+        schedule.put(3,insideMap);
+        schedule.put(4,insideMap);
+        schedule.put(5,insideMap);
+
+
+        assertThrows(IllegalArgumentException.class, () ->{RemoveEmployeeWorkedManyDaysInARow.remove(day,schedule,employees);});
     }
 }
