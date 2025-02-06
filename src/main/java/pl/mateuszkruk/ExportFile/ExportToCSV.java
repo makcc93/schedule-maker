@@ -1,4 +1,5 @@
 package pl.mateuszkruk.ExportFile;
+import org.springframework.stereotype.Service;
 import pl.mateuszkruk.Schedule.SumOfShifts;
 import pl.mateuszkruk.Schedule.Shifts;
 import pl.mateuszkruk.Employee.Employee;
@@ -6,7 +7,7 @@ import pl.mateuszkruk.Employee.Employee;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-
+@Service
 public class ExportToCSV {
 
     public static void exportScheduleToCSV(Map<Integer, Map<Employee, Shifts>> schedule,

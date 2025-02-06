@@ -1,11 +1,12 @@
 package pl.mateuszkruk.Menu.StepsInMenu;
 
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Messages.DrawLine;
 import pl.mateuszkruk.UserInput.InputHandler;
 import pl.mateuszkruk.WorkTime.OverWorkingHours;
 import pl.mateuszkruk.WorkTime.PersonalMonthlyStandardWorkingHours;
 import pl.mateuszkruk.WorkTime.StandardMonthlyWorkingHours;
-
+@Component
 public class HoursCountAndOverWorking {
 private final InputHandler inputHandler;
 private final PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours;

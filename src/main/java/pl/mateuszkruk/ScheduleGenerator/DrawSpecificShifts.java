@@ -1,5 +1,6 @@
 package pl.mateuszkruk.ScheduleGenerator;
 
+import org.springframework.stereotype.Service;
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.Employee.EmployeeListsMatcher;
 import pl.mateuszkruk.Schedule.Shifts;
@@ -7,6 +8,7 @@ import pl.mateuszkruk.WorkTime.SpecificShiftToEmployeeAdder;
 import pl.mateuszkruk.WorkTime.SumOfMonthlyEmployeeHours;
 import java.util.LinkedHashMap;
 import java.util.Map;
+@Service
 
 public class DrawSpecificShifts {
     private final SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder;

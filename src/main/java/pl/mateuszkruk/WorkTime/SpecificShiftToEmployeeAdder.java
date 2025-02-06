@@ -1,10 +1,12 @@
 package pl.mateuszkruk.WorkTime;
 
+import org.springframework.stereotype.Service;
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.Schedule.Shifts;
 
 import java.util.HashMap;
 import java.util.Map;
+@Service
 
 public class SpecificShiftToEmployeeAdder {
     Map<Integer, Map<Employee,Shifts>> specificShifts = new HashMap<>();

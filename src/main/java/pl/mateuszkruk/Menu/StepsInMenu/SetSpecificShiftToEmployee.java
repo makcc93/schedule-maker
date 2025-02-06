@@ -1,5 +1,7 @@
 package pl.mateuszkruk.Menu.StepsInMenu;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.Employee.EmployeeListsMatcher;
 import pl.mateuszkruk.Messages.DefaultInSwitch;
@@ -11,7 +13,7 @@ import pl.mateuszkruk.UserInput.InputHandler;
 import pl.mateuszkruk.WorkTime.SpecificShiftToEmployeeAdder;
 
 import java.util.List;
-
+@Component
 public class SetSpecificShiftToEmployee {
     private final InputHandler inputHandler;
     private final SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder;
@@ -21,6 +23,7 @@ public class SetSpecificShiftToEmployee {
     private final String fourteenToTwenty = "14:00 20:00";
     private final String eightToTwenty = "08:00 20:00";
 
+    @Autowired
     public SetSpecificShiftToEmployee(InputHandler inputHandler,
                                       SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder,
                                       EmployeeListsMatcher employeeListsMatcher,

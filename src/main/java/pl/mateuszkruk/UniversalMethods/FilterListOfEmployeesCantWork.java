@@ -1,5 +1,6 @@
 package pl.mateuszkruk.UniversalMethods;
 
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.Employee.EmployeeListsMatcher;
 import pl.mateuszkruk.Schedule.Shifts;
@@ -8,6 +9,7 @@ import pl.mateuszkruk.WorkTime.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+@Component
 
 public class FilterListOfEmployeesCantWork {
 

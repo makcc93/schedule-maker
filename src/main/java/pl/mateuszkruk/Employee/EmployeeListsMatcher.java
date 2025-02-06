@@ -1,7 +1,9 @@
 package pl.mateuszkruk.Employee;
 
-import java.util.*;
+import org.springframework.stereotype.Component;
 
+import java.util.*;
+@Component
 public class EmployeeListsMatcher {
     Map<String, Employee> allEmployees = new HashMap<>();
     Map<String, Employee> allEmployeesWithoutManagers = new HashMap<>();

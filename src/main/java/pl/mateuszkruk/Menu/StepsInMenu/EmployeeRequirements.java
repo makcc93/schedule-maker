@@ -1,11 +1,12 @@
 package pl.mateuszkruk.Menu.StepsInMenu;
 
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Messages.DrawLine;
 import pl.mateuszkruk.Schedule.FirstDayAndLenghtOfMonth;
 import pl.mateuszkruk.Schedule.DaysOfWeek;
 import pl.mateuszkruk.UserInput.InputHandler;
 
-
+@Component
 public class EmployeeRequirements {
     private final InputHandler inputHandler;
     private final FirstDayAndLenghtOfMonth firstDayAndLenghtOfMonth;
@@ -65,7 +66,6 @@ public class EmployeeRequirements {
                 choiceInsideLoop = inputHandler.getBoolean("Jeśli się zgadza wciśnij 1, jeśli chcesz zacząć od początku wciśnij 0.");
 
                 if (choiceInsideLoop) {
-                    System.out.println("Potwierdzileś więc wykonałem!");
                     DaysOfWeek.MONDAY.setDefaultDayRequirements(mondayChoice);
                     DaysOfWeek.TUESDAY.setDefaultDayRequirements(tuesdayChoice);
                     DaysOfWeek.WEDNESDAY.setDefaultDayRequirements(wednesdayChoice);

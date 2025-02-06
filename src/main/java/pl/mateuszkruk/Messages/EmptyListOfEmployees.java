@@ -1,5 +1,8 @@
 package pl.mateuszkruk.Messages;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class EmptyListOfEmployees {
 
     public static void showMessage(){

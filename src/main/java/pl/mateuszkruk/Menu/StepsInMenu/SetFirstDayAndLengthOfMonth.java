@@ -1,5 +1,6 @@
 package pl.mateuszkruk.Menu.StepsInMenu;
 
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Employee.EmployeeListsMatcher;
 import pl.mateuszkruk.Messages.DefaultInSwitch;
 import pl.mateuszkruk.Messages.DrawLine;
@@ -7,7 +8,7 @@ import pl.mateuszkruk.Schedule.FirstDayAndLenghtOfMonth;
 import pl.mateuszkruk.Schedule.DaysOfWeek;
 import pl.mateuszkruk.UserInput.InputHandler;
 
-
+@Component
 public class SetFirstDayAndLengthOfMonth {
     private final InputHandler inputHandler;
     EmployeeListsMatcher employeeListsMatcher;
@@ -94,6 +95,8 @@ while(firstStep) {
                         "Pierwszy dzień miesiąca: " + firstDayAndLenghtOfMonth.getFirstDayOfMonth().getPolishName());
 
                 System.out.println("Długość miesiąca: " + firstDayAndLenghtOfMonth.getLengthOfMonth());
+
+                firstDayAndLenghtOfMonth.setMonthDetails(firstDayAndLenghtOfMonth.getFirstDayOfMonth(),firstDayAndLenghtOfMonth.getLengthOfMonth());
 
                 isRunning = !inputHandler.getBoolean("Jeśli potwiedzasz wciśnij 1, jeśli chcesz przejść Krok " +
                         step + " raz jeszcze wciśnij 0.");

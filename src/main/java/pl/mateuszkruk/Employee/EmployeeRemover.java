@@ -1,6 +1,9 @@
 package pl.mateuszkruk.Employee;
+import org.checkerframework.checker.compilermsgs.qual.CompilerMessageKey;
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.UserInput.InputHandler;
 
+@Component
 public class EmployeeRemover implements EmployeeManagerActions {
 
     @Override

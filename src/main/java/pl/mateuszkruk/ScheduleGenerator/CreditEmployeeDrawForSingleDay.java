@@ -1,13 +1,15 @@
 package pl.mateuszkruk.ScheduleGenerator;
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.Messages.EmptyListOfEmployees;
 import pl.mateuszkruk.UniversalMethods.*;
 import pl.mateuszkruk.WorkTime.*;
 import pl.mateuszkruk.Employee.EmployeeListsMatcher;
 import pl.mateuszkruk.Schedule.Shifts;
-
+@Component
 public class CreditEmployeeDrawForSingleDay {
     PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours;
     private final EmployeeProposalFreeDays employeeProposalFreeDays;
@@ -21,6 +23,7 @@ public class CreditEmployeeDrawForSingleDay {
     protected int afternoonSumOfEmployees;
     ArrayList<Employee> chosenCreditEmployee;
 
+    @Autowired
     public CreditEmployeeDrawForSingleDay(EmployeeListsMatcher employeeListsMatcher,
                                           SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours,
                                           PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours,

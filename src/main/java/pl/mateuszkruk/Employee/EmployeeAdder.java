@@ -1,6 +1,8 @@
 package pl.mateuszkruk.Employee;
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.UserInput.InputHandler;
 
+@Component
 public class EmployeeAdder implements EmployeeManagerActions {
 
     @Override

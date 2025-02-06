@@ -2,13 +2,14 @@ package pl.mateuszkruk.ExportFile.ExcelFile;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.Employee.EmployeeListsMatcher;
 import pl.mateuszkruk.Schedule.Shifts;
 import pl.mateuszkruk.Schedule.SumOfShifts;
 
 import java.util.Map;
-
+@Component
 public class Rows {
 private final EmployeeListsMatcher employeeListsMatcher;
 

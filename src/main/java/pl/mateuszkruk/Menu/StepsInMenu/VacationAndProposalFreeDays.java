@@ -1,5 +1,7 @@
 package pl.mateuszkruk.Menu.StepsInMenu;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Employee.EmployeeListsMatcher;
 import pl.mateuszkruk.Messages.DrawLine;
 import pl.mateuszkruk.UserInput.InputHandler;
@@ -7,13 +9,13 @@ import pl.mateuszkruk.WorkTime.EmployeeProposalFreeDays;
 import pl.mateuszkruk.Messages.NotFound;
 import pl.mateuszkruk.WorkTime.VacationAdder;
 import java.util.*;
-
+@Component
 public class VacationAndProposalFreeDays {
     private final InputHandler inputHandler;
     private final EmployeeListsMatcher employeeListsMatcher;
     private final VacationAdder vacationAdder;
     private final EmployeeProposalFreeDays employeeProposalFreeDays;
-
+@Autowired
     public VacationAndProposalFreeDays(InputHandler inputHandler,
                                        EmployeeListsMatcher employeeListsMatcher,
                                        VacationAdder vacationAdder, EmployeeProposalFreeDays employeeProposalFreeDays){

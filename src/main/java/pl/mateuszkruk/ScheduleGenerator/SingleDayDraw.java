@@ -1,5 +1,9 @@
 package pl.mateuszkruk.ScheduleGenerator;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.Messages.EmptyListOfEmployees;
 import pl.mateuszkruk.UniversalMethods.*;
@@ -13,6 +17,7 @@ import pl.mateuszkruk.Schedule.*;
 
 import java.util.*;
 
+@Component
 public class SingleDayDraw {
     private final SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours;
     private final CreditEmployeeDrawForSingleDay creditEmployeeDrawForSingleDay;
@@ -26,26 +31,38 @@ public class SingleDayDraw {
     private final SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder;
     private final EmployeeProposalFreeDays employeeProposalFreeDays;
     private final FirstDayAndLenghtOfMonth firstDayAndLenghtOfMonth;
+    private final Random random;
+    private final ShiftDraw shiftDraw;
+    private final DrawEmployeesForWeekend drawEmployeesForWeekend;
 
 
     Map<Integer, Map<Employee, Shifts>> finalSchedule = new HashMap<>();
     Map<Employee, Shifts> employeesForSingleDay = new HashMap<>();
     Map<Integer, SumOfShifts> dayAndNumberOfEmployees = new HashMap<>();
 
+    @Autowired
     public SingleDayDraw(FirstDayAndLenghtOfMonth firstDayAndLenghtOfMonth,
-                         EmployeeListsMatcher employeeListsMatcher, ShiftRequirements shiftRequirements,
+                         EmployeeListsMatcher employeeListsMatcher,
+                         ShiftRequirements shiftRequirements,
                          SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours,
-                         VacationAdder vacationAdder, PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours,
+                         VacationAdder vacationAdder,
+                         PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours,
                          EmployeeProposalFreeDays employeeProposalFreeDays,
                          DrawSpecificShifts drawSpecificShifts,
-                         SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder) {
+                         SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder,
+                         Random random,
+                         ShiftDraw shiftDraw,
+                         DrawEmployeesForWeekend drawEmployeesForWeekend) {
         this.firstDayAndLenghtOfMonth = firstDayAndLenghtOfMonth;
         this.employeeListsMatcher = employeeListsMatcher;
         this.shiftRequirements = shiftRequirements;
         this.personalMonthlyStandardWorkingHours = personalMonthlyStandardWorkingHours;
         this.drawSpecificShifts = drawSpecificShifts;
         this.specificShiftToEmployeeAdder = specificShiftToEmployeeAdder;
-        this.managerDrawForSingleDay = new ManagerDrawForSingleDay(employeeListsMatcher, sumOfMonthlyEmployeeHours, vacationAdder, personalMonthlyStandardWorkingHours, employeeProposalFreeDays,firstDayAndLenghtOfMonth,shiftRequirements,specificShiftToEmployeeAdder,this);
+        this.random = random;
+        this.shiftDraw = shiftDraw;
+        this.drawEmployeesForWeekend = drawEmployeesForWeekend;
+        this.managerDrawForSingleDay = new ManagerDrawForSingleDay(employeeListsMatcher, sumOfMonthlyEmployeeHours, vacationAdder, personalMonthlyStandardWorkingHours, employeeProposalFreeDays,firstDayAndLenghtOfMonth,shiftRequirements,specificShiftToEmployeeAdder,this,random,shiftDraw);
         this.creditEmployeeDrawForSingleDay = new CreditEmployeeDrawForSingleDay(employeeListsMatcher, sumOfMonthlyEmployeeHours, personalMonthlyStandardWorkingHours, vacationAdder, employeeProposalFreeDays, specificShiftToEmployeeAdder,this);
         this.sumOfMonthlyEmployeeHours = sumOfMonthlyEmployeeHours;
         this.vacationAdder = vacationAdder;
@@ -54,7 +71,7 @@ public class SingleDayDraw {
 
     public void drawEmployeesSingleDay(int dayOfMonth) {
         DaysOfWeek thisDay = firstDayAndLenghtOfMonth.getMonthSchedule(dayOfMonth);
-        int dayRequirement = shiftRequirements.getSpecificDayRequirements(dayOfMonth);
+        int dayRequirement = firstDayAndLenghtOfMonth.getShiftRequirements().getSpecificDayRequirements(dayOfMonth);
         int sumOfMorningShifts = 0;
         int sumOfAfternoonShifts = 0;
 
@@ -76,7 +93,7 @@ public class SingleDayDraw {
                                     drawSpecificShifts.getSumOfAfternoonShifts();
 
             if (WeekendDayChecker.checkDay(thisDay,dayRequirement,highRequirement)) {
-                DrawEmployeesForWeekend.draw(highRequirement, sumOfMorningShifts, sumOfAfternoonShifts,
+                drawEmployeesForWeekend.draw(highRequirement, sumOfMorningShifts, sumOfAfternoonShifts,
                         lowestHoursWorkedEmployees,
                         employeesForSingleDay,
                         sumOfMonthlyEmployeeHours);
@@ -97,7 +114,7 @@ public class SingleDayDraw {
                         }
 
                     Employee employeeWithLowestHours = lowestHoursWorkedEmployees.keySet().iterator().next();
-                    Shifts randomShift = ShiftDraw.drawRandomShift();
+                    Shifts randomShift = shiftDraw.drawRandomShift();
 
                     MatchShiftWithEmployee.run(employeeWithLowestHours,randomShift,
                             lowestHoursWorkedEmployees,employeesForSingleDay,sumOfMonthlyEmployeeHours);

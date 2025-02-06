@@ -1,5 +1,8 @@
 package pl.mateuszkruk.ScheduleGenerator;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PriorityInDraw {
 
   public static boolean priority;

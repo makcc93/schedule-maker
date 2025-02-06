@@ -1,5 +1,8 @@
 package pl.mateuszkruk.ScheduleGenerator;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ScheduleDone {
     static boolean isScheduleDone = false;
 

@@ -1,5 +1,8 @@
 package pl.mateuszkruk;
 
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Employee.EmployeeRemover;
 import pl.mateuszkruk.Employee.EmployeeAdder;
 import pl.mateuszkruk.Employee.EmployeeListsMatcher;
@@ -7,6 +10,8 @@ import pl.mateuszkruk.Employee.SpecialEmployeesSet;
 import pl.mateuszkruk.Menu.MainMenu;
 import pl.mateuszkruk.Menu.StepsInMenu.ChooseDrawPriority;
 import pl.mateuszkruk.Menu.StepsInMenu.SetSpecificShiftToEmployee;
+import pl.mateuszkruk.Schedule.ShiftDraw;
+import pl.mateuszkruk.ScheduleGenerator.DrawEmployeesForWeekend;
 import pl.mateuszkruk.ScheduleGenerator.DrawSpecificShifts;
 import pl.mateuszkruk.UserInput.InputHandler;
 import pl.mateuszkruk.WorkTime.SpecificShiftToEmployeeAdder;
@@ -18,37 +23,63 @@ import pl.mateuszkruk.Schedule.FirstDayAndLenghtOfMonth;
 import pl.mateuszkruk.ScheduleGenerator.FullMonthScheduleGenerator;
 import pl.mateuszkruk.ScheduleGenerator.SingleDayDraw;
 import pl.mateuszkruk.Schedule.DaysOfWeek;
+import java.util.Random;
 
-
+@Component
 public class Main {
-    public static void main(String[] args) throws Exception {
+    Random random;
+    ShiftDraw shiftDraw;
+    InputHandler inputHandler;
+    EmployeeListsMatcher employeeListsMatcher;
+    SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder;
+    SpecialEmployeesSet specialEmployeesSet;
+    EmployeeRemover employeeRemover;
+    EmployeeAdder employeeAdder;
+    SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours;
+    DrawSpecificShifts drawSpecificShifts;
+    PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours;
+    FirstDayAndLenghtOfMonth firstDayAndLenghtOfMonth;
+    SetSpecificShiftToEmployee setSpecificShiftToEmployee;
+    VacationAdder vacationAdder;
+    EmployeeProposalFreeDays employeeProposalFreeDays;
+    ChooseDrawPriority chooseDrawPriority;
+    SingleDayDraw singleDayDraw;
+    FullMonthScheduleGenerator fullMonthScheduleGenerator;
+    DrawEmployeesForWeekend drawEmployeesForWeekend;
+    MainMenu mainMenu;
 
+    @Autowired
+    public Main(Random random, ShiftDraw shiftDraw, EmployeeListsMatcher employeeListsMatcher, SpecialEmployeesSet specialEmployeesSet,
+                EmployeeRemover employeeRemover, EmployeeAdder employeeAdder, SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours, DrawSpecificShifts drawSpecificShifts,
+                PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours, FirstDayAndLenghtOfMonth firstDayAndLenghtOfMonth, SetSpecificShiftToEmployee setSpecificShiftToEmployee,
+                VacationAdder vacationAdder, EmployeeProposalFreeDays employeeProposalFreeDays, ChooseDrawPriority chooseDrawPriority, SingleDayDraw singleDayDraw,
+                FullMonthScheduleGenerator fullMonthScheduleGenerator, DrawEmployeesForWeekend drawEmployeesForWeekend, InputHandler inputHandler,
+                MainMenu mainMenu) {
+        this.random = random;
+        this.shiftDraw = shiftDraw;
+        this.employeeListsMatcher = employeeListsMatcher;
+        this.specialEmployeesSet = specialEmployeesSet;
+        this.employeeRemover = employeeRemover;
+        this.employeeAdder = employeeAdder;
+        this.sumOfMonthlyEmployeeHours = sumOfMonthlyEmployeeHours;
+        this.drawSpecificShifts = drawSpecificShifts;
+        this.personalMonthlyStandardWorkingHours = personalMonthlyStandardWorkingHours;
+        this.firstDayAndLenghtOfMonth = firstDayAndLenghtOfMonth;
+        this.setSpecificShiftToEmployee = setSpecificShiftToEmployee;
+        this.vacationAdder = vacationAdder;
+        this.employeeProposalFreeDays = employeeProposalFreeDays;
+        this.chooseDrawPriority = chooseDrawPriority;
+        this.singleDayDraw = singleDayDraw;
+        this.fullMonthScheduleGenerator = fullMonthScheduleGenerator;
+        this.drawEmployeesForWeekend = drawEmployeesForWeekend;
+        this.inputHandler = inputHandler;
+        this.mainMenu = mainMenu;
 
-        InputHandler inputHandler = new InputHandler();
-        EmployeeListsMatcher employeeListsMatcher = new EmployeeListsMatcher();
-        SpecificShiftToEmployeeAdder specificShiftToEmployeeAdder = new SpecificShiftToEmployeeAdder();
-        SpecialEmployeesSet specialEmployeesSet = new SpecialEmployeesSet();
-        EmployeeRemover employeeRemover = new EmployeeRemover();
-        EmployeeAdder employeeAdder = new EmployeeAdder();
-        SumOfMonthlyEmployeeHours sumOfMonthlyEmployeeHours = new SumOfMonthlyEmployeeHours();
-        DrawSpecificShifts drawSpecificShifts = new DrawSpecificShifts(specificShiftToEmployeeAdder,sumOfMonthlyEmployeeHours,employeeListsMatcher);
-        PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours = new PersonalMonthlyStandardWorkingHours(employeeListsMatcher);
-        FirstDayAndLenghtOfMonth firstDayAndLenghtOfMonth = new FirstDayAndLenghtOfMonth(DaysOfWeek.SATURDAY, 31);
-        SetSpecificShiftToEmployee setSpecificShiftToEmployee = new SetSpecificShiftToEmployee(inputHandler, specificShiftToEmployeeAdder, employeeListsMatcher,firstDayAndLenghtOfMonth);
-        VacationAdder vacationAdder = new VacationAdder(personalMonthlyStandardWorkingHours, firstDayAndLenghtOfMonth.getShiftRequirements(), firstDayAndLenghtOfMonth);
-        EmployeeProposalFreeDays employeeProposalFreeDays = new EmployeeProposalFreeDays();
-        ChooseDrawPriority chooseDrawPriority = new ChooseDrawPriority(inputHandler);
-        SingleDayDraw singleDayDraw = new SingleDayDraw(firstDayAndLenghtOfMonth, employeeListsMatcher, firstDayAndLenghtOfMonth.getShiftRequirements(),sumOfMonthlyEmployeeHours, vacationAdder,personalMonthlyStandardWorkingHours,employeeProposalFreeDays,drawSpecificShifts,specificShiftToEmployeeAdder);
-        FullMonthScheduleGenerator fullMonthScheduleGenerator = new FullMonthScheduleGenerator(singleDayDraw, firstDayAndLenghtOfMonth);
+        firstDayAndLenghtOfMonth.setMonthDetails(DaysOfWeek.MONDAY, 31);
+    }
 
-        MainMenu mainMenu = new MainMenu(employeeListsMatcher,employeeRemover,employeeAdder, firstDayAndLenghtOfMonth,
-                specialEmployeesSet,inputHandler,personalMonthlyStandardWorkingHours, vacationAdder,employeeProposalFreeDays,
-                sumOfMonthlyEmployeeHours,
-                singleDayDraw,
-                chooseDrawPriority,
-                fullMonthScheduleGenerator,
-                setSpecificShiftToEmployee);
-
+    @PostConstruct
+    public void run() throws Exception {
         mainMenu.run();
 
         inputHandler.closeScanner();

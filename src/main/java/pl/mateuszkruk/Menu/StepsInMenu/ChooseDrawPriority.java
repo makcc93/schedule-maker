@@ -1,12 +1,14 @@
 package pl.mateuszkruk.Menu.StepsInMenu;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Messages.DrawLine;
 import pl.mateuszkruk.ScheduleGenerator.PriorityInDraw;
 import pl.mateuszkruk.UserInput.InputHandler;
-
+@Component
 public class ChooseDrawPriority {
     private final InputHandler inputHandler;
-
+@Autowired
     public ChooseDrawPriority(InputHandler inputHandler){
         this.inputHandler=inputHandler;
     }

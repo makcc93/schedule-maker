@@ -1,5 +1,7 @@
 package pl.mateuszkruk.WorkTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.Schedule.FirstDayAndLenghtOfMonth;
 import pl.mateuszkruk.Schedule.DaysOfWeek;
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Component
 public class VacationAdder {
     private final ShiftRequirements shiftRequirements;
     private final PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours;
@@ -18,7 +20,7 @@ public class VacationAdder {
     Map<Integer,DaysOfWeek> saturdays;
     Map<Employee, List<Integer>> employeesVacations = new HashMap<>();
 
-
+@Autowired
     public VacationAdder(PersonalMonthlyStandardWorkingHours personalMonthlyStandardWorkingHours,
                          ShiftRequirements shiftRequirements, FirstDayAndLenghtOfMonth firstDayAndLenghtOfMonth){
         this.personalMonthlyStandardWorkingHours = personalMonthlyStandardWorkingHours;
@@ -52,7 +54,7 @@ public class VacationAdder {
     private void checkingFreeDaysInMonth(int dayOfStartVacation, int dayOfEndVacation){
         freeDaysOfMonth = new ArrayList<>();
         for (int i =dayOfStartVacation;i<=dayOfEndVacation;i++){
-            if (shiftRequirements.getSpecificDayRequirements(i) == 0) {
+            if (firstDayAndLenghtOfMonth.getShiftRequirements().getSpecificDayRequirements(i) == 0) {
                 freeDaysOfMonth.add(i);
             }
         }

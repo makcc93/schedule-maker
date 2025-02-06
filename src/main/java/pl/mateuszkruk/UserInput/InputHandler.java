@@ -1,4 +1,8 @@
 package pl.mateuszkruk.UserInput;
+import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Messages.DefaultInSwitch;
 import pl.mateuszkruk.Messages.NumberFormatExeption;
 
@@ -6,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Component
 public class InputHandler {
     private final Scanner scanner = new Scanner(System.in);
 
@@ -85,6 +90,30 @@ public class InputHandler {
 
             for (String number : numbers){
                 integers.add(Integer.valueOf(number.trim()));
+            }
+        }
+        catch(NumberFormatException e){
+            NumberFormatExeption.showMessage();
+            integers.clear();
+        }
+
+        return integers;
+    }
+
+    public List<Integer> getNewListOfIntegers(){
+        List<Integer> integers = new ArrayList<>();
+
+        System.out.print("Wpisz liczby oddzielone przecinkami (np. 1,2,3): ");
+        String input = scanner.nextLine();
+
+        try{
+            List<String> days = Splitter.on(",")
+                    .trimResults()
+                    .omitEmptyStrings()
+                    .splitToList(input);
+
+            for (String day : days){
+                integers.add(Integer.valueOf(day));
             }
         }
         catch(NumberFormatException e){

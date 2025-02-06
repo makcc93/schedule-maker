@@ -104,4 +104,25 @@ public class RemoveEmployeeWorkedManyDaysInARowTest {
 
         assertThrows(IllegalArgumentException.class, () ->{RemoveEmployeeWorkedManyDaysInARow.remove(day,schedule,employees);});
     }
+
+    @Test
+    public void scheduleIsNull(){
+        int day = 6;
+        Map<Employee,Shifts> insideMap = new HashMap<>();
+        Shifts allDay = Shifts.EIGHT_TO_TWENTY;
+        insideMap.put(employee2,allDay);
+
+
+
+        schedule.put(2,insideMap);
+        schedule.put(3,insideMap);
+        schedule.put(4,insideMap);
+        schedule.put(5,insideMap);
+
+        schedule.clear();
+        schedule = null;
+
+        assertThrows(NullPointerException.class, () -> {RemoveEmployeeWorkedManyDaysInARow.remove(day,schedule,employees);});
+
+    }
 }

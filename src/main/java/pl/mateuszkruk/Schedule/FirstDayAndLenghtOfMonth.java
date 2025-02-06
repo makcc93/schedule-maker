@@ -1,7 +1,11 @@
 package pl.mateuszkruk.Schedule;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class FirstDayAndLenghtOfMonth {
 
     Map<Integer, DaysOfWeek> monthSchedule = new HashMap<>();
@@ -10,15 +14,30 @@ public class FirstDayAndLenghtOfMonth {
     private int lengthOfMonth;
 
 
+//    @Autowired
+//    public FirstDayAndLenghtOfMonth(DaysOfWeek firstDayOfMonth,
+//                                    int length) {
+//        this.firstDayOfMonth = firstDayOfMonth;
+//        this.lengthOfMonth = length;
+//        this.shiftRequirements = new ShiftRequirements(this);
+//        calculateMonthSchedule();
+//        setSpecificDayRequirementsLikeDefault();
+//    }
 
-    public FirstDayAndLenghtOfMonth(DaysOfWeek firstDayOfMonth,
-                                    int lengthOfMonth){
+    @Autowired
+    public FirstDayAndLenghtOfMonth(){
+    this.shiftRequirements = new ShiftRequirements(this);
+    }
+
+    public void setMonthDetails(DaysOfWeek firstDayOfMonth,
+                                    int length){
         this.firstDayOfMonth = firstDayOfMonth;
-        this.lengthOfMonth = lengthOfMonth;
-        this.shiftRequirements = new ShiftRequirements(this);
+        this.lengthOfMonth = length;
         calculateMonthSchedule();
         setSpecificDayRequirementsLikeDefault();
     }
+
+
 
     private void calculateMonthSchedule(){
         DaysOfWeek[] daysOfWeek = DaysOfWeek.values();

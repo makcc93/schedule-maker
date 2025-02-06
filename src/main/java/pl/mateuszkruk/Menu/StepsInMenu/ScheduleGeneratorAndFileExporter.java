@@ -1,5 +1,6 @@
 package pl.mateuszkruk.Menu.StepsInMenu;
 
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.Employee.EmployeeListsMatcher;
 import pl.mateuszkruk.ExportFile.ExcelFile.ExportToExcel;
@@ -14,7 +15,7 @@ import pl.mateuszkruk.UserInput.InputHandler;
 import pl.mateuszkruk.WorkTime.SumOfMonthlyEmployeeHours;
 
 import java.util.Map;
-
+@Component
 public class ScheduleGeneratorAndFileExporter {
     private final InputHandler inputHandler;
     private final SingleDayDraw singleDayDraw;

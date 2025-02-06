@@ -1,10 +1,11 @@
 package pl.mateuszkruk.WorkTime;
 
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Employee.Employee;
 
 import java.util.Map;
 import java.util.HashMap;
-
+@Component
 public class SumOfMonthlyEmployeeHours {
     Map<Employee, Integer> sumOfEmployeeMonthlyHours = new HashMap<>();
 

@@ -1,19 +1,29 @@
 package pl.mateuszkruk.Schedule;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@Service
 public class ShiftDraw {
-    private static final Random random = new Random();
+    private final Random random;
 
-    public static Shifts drawRandomShift() {
+    @Autowired
+    public ShiftDraw(Random random) {
+        this.random = random;
+    }
+
+
+    public Shifts drawRandomShift() {
         List<Shifts> shifts = Shifts.LIST_OF_SHIFTS;
         return shifts.get(random.nextInt(shifts.size()));
     }
 
 
-    public static Shifts randomAfternoonShift() {
+    public Shifts randomAfternoonShift() {
         List<Shifts> afternoonShifts = new ArrayList<>();
 
         for (Shifts shifts : Shifts.LIST_OF_SHIFTS) {
@@ -25,7 +35,7 @@ public class ShiftDraw {
         return afternoonShifts.get(random.nextInt(afternoonShifts.size()));
     }
 
-    public static Shifts randomMorningShift() {
+    public Shifts randomMorningShift() {
         List<Shifts> morningShifts = new ArrayList<>();
 
         for (Shifts shifts : Shifts.LIST_OF_SHIFTS) {
@@ -36,7 +46,7 @@ public class ShiftDraw {
         return morningShifts.get(random.nextInt(morningShifts.size()));
     }
 
-    public static Shifts randomOpenStoreShift() {
+    public Shifts randomOpenStoreShift() {
         List<Shifts> openStoreShifts = new ArrayList<>();
 
         for (Shifts shifts : Shifts.LIST_OF_SHIFTS) {
@@ -47,7 +57,7 @@ public class ShiftDraw {
         return openStoreShifts.get(random.nextInt(openStoreShifts.size()));
     }
 
-    public static Shifts randomCloseStoreShift() {
+    public Shifts randomCloseStoreShift() {
         List<Shifts> closeStoreShifts = new ArrayList<>();
 
         for (Shifts shifts : Shifts.LIST_OF_SHIFTS) {
@@ -58,7 +68,7 @@ public class ShiftDraw {
         return closeStoreShifts.get(random.nextInt(closeStoreShifts.size()));
     }
 
-    public static Shifts randomAllDayShift(){
+    public Shifts randomAllDayShift(){
         List<Shifts> allDayShifts = new ArrayList<>();
 
         for (Shifts shifts : Shifts.LIST_OF_SHIFTS){

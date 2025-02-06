@@ -1,6 +1,7 @@
 package pl.mateuszkruk.UniversalMethods;
 
 import com.google.common.base.Preconditions;
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.WorkTime.OverWorkingHours;
 import pl.mateuszkruk.WorkTime.PersonalMonthlyStandardWorkingHours;
@@ -9,7 +10,7 @@ import pl.mateuszkruk.WorkTime.SumOfMonthlyEmployeeHours;
 
 import java.util.Iterator;
 import java.util.List;
-
+@Component
 public class RemoveEmployeeOverWorked {
 
     public static void remove(List<Employee> employees,

@@ -1,5 +1,7 @@
 package pl.mateuszkruk.Menu;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Employee.*;
 import pl.mateuszkruk.Menu.StepsInMenu.*;
 import pl.mateuszkruk.Messages.*;
@@ -14,7 +16,7 @@ import pl.mateuszkruk.WorkTime.VacationAdder;
 import java.util.Comparator;
 
 
-
+@Component
 public class MainMenu {
     private final EmployeeListsMatcher employeeListsMatcher;
     private final EmployeeAdder employeeAdder;
@@ -31,6 +33,7 @@ public class MainMenu {
     private final InputHandler inputHandler;
     private final String password = "programujodpodstaw.pl";
 
+    @Autowired
     public MainMenu(EmployeeListsMatcher employeeListsMatcher,
                     EmployeeRemover employeeRemover,
                     EmployeeAdder employeeAdder,

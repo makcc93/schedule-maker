@@ -1,15 +1,18 @@
 package pl.mateuszkruk.ScheduleGenerator;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Schedule.DaysOfWeek;
 import pl.mateuszkruk.Schedule.FirstDayAndLenghtOfMonth;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class FullMonthScheduleGenerator {
     private final SingleDayDraw singleDayDraw;
     private final FirstDayAndLenghtOfMonth firstDayAndLenghtOfMonth;
-
+@Autowired
     public FullMonthScheduleGenerator(SingleDayDraw singleDayDraw,
                                       FirstDayAndLenghtOfMonth firstDayAndLenghtOfMonth) {
         this.singleDayDraw = singleDayDraw;

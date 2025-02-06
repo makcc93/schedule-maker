@@ -1,5 +1,6 @@
 package pl.mateuszkruk.ExportFile.ExcelFile;
 
+import org.springframework.stereotype.Service;
 import pl.mateuszkruk.Employee.Employee;
 import pl.mateuszkruk.Employee.EmployeeListsMatcher;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -13,7 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
 
-
+@Service
 public class ExportToExcel {
     private final EmployeeListsMatcher employeeListsMatcher;
 

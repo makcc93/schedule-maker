@@ -1,5 +1,6 @@
 package pl.mateuszkruk.Employee;
 
+
 public class Employee {
     protected final String sapNumber;
     protected final String firstName;
