@@ -69,32 +69,15 @@ public class MainMenu {
 
         boolean programRunning = true;
         while(programRunning) {
-            System.out.println("""
-                        .:: PROGRAM DO TWORZENIA GRAFIKU PRACY - Schedule Maker ::.
-                    Dzięki temu narzędziu możesz przygotować grafik dla pracowników w godzinach 
-                    pracy obiektu od 08:00 do 20:00 uwzględniając zmienne zapotrzebowanie na ich 
-                    ilość w danych dniach tygodnia i miesiąca, a uwzględniając również potrzeby samych 
-                    pracowników pod kątem dni wolnych, preferencji zmian w konkretnych dniach.
-                    
-                    """);
-            System.out.println("[1] Lista pracowników");
-            System.out.println("[2] Dodaj pracownika");
-            System.out.println("[3] Usuń pracownika");
-            System.out.println("[4] Stwórz grafik");
-            System.out.println("[5] Użyj specjalnego kodu importu pracowników");
-            System.out.println("[6] Zakończ działanie programu");
+            mainMenuMessage();
 
-                int userChoice = inputHandler.getInt();
-                switch (userChoice) {
+            int userChoice = inputHandler.getInt();
+            switch (userChoice) {
                     case 1 -> {
                         boolean firstMenuOptionRunning = true;
 
                             while(firstMenuOptionRunning){
-                            System.out.println("LISTA PRACOWNIKÓW");
-                            System.out.println("[1] Lista wszytskich pracowników");
-                            System.out.println("[2] Lista pracowników ratalnych");
-                            System.out.println("[3] Lista kierowników");
-                            System.out.println("[4] Wyjdź");
+                            employeeListMenuMessage();
 
                             int choiceInFirst = inputHandler.getInt();
                                 if (employeeListsMatcher.getAllEmployees().isEmpty()){
@@ -143,6 +126,7 @@ public class MainMenu {
                         System.out.println("DODAWANIE PRACOWNIKA");
                         employeeAdder.execute(employeeListsMatcher,inputHandler);
                     }
+
                     case 3 -> {
                         System.out.println("USUWANIE PRACOWNIKA");
                         if (employeeListsMatcher.getAllEmployees().isEmpty()){
@@ -152,6 +136,7 @@ public class MainMenu {
                         employeeRemover.execute(employeeListsMatcher,inputHandler);
                         }
                     }
+
                     case 4 -> {
                         System.out.println("TWORZENIE GRAFIKA PRACY");
 
@@ -188,13 +173,33 @@ public class MainMenu {
 
                             scheduleGeneratorAndFileExporter.run();
                     }
-                    case 5 -> {
-                        String choiceInFifth = inputHandler.getString(".:: WPROWADŹ SPECJALNY KOD IMPORTU PRACOWNIKÓW ::.");
 
-                        if (choiceInFifth.equals(password)){
-                            specialEmployeesSet.execute(employeeListsMatcher,inputHandler);
+                    case 5 -> {
+                        boolean stepRunning = true;
+                        while(stepRunning) {
+                            String choiceInFifth = inputHandler.getString(".:: WPROWADŹ SPECJALNY KOD IMPORTU PRACOWNIKÓW ::.");
+
+                            if (choiceInFifth.equals(password)) {
+                                specialEmployeesSet.execute(employeeListsMatcher, inputHandler);
+                                stepRunning = false;
+                            }
+                            else {
+                                System.out.println("Wprowadzony kod nie został rozpoznany, spróbuj ponownie.");
+                                System.out.println("[1] Spróbuj ponownie wpisać kod.");
+                                System.out.println("[2] Wróć.");
+
+                                int choice = inputHandler.getInt();
+
+                                switch(choice){
+                                    case 1 -> {stepRunning = true;}
+                                    case 2 -> {stepRunning = false;}
+                                    default -> {DefaultInSwitch.showMessage();}
+                                }
+                            }
                         }
+
                     }
+
                     case 6 -> {
                         programRunning=!inputHandler.getBoolean("Wciśnij 1, aby potwiedzić zamknięcie programu, 0 aby nie zamykać.");
 
@@ -202,12 +207,36 @@ public class MainMenu {
                             System.out.println("Dziękujemy za skorzystanie z programu .::Schedule Maker::.");
                         }
                     }
+
                     default -> {
                         DefaultInSwitch.showMessage();
                     }
-
-
                 }
         }
+    }
+
+    private void mainMenuMessage(){
+        System.out.println("""
+                        .:: PROGRAM DO TWORZENIA GRAFIKU PRACY - Schedule Maker ::.
+                    Dzięki temu narzędziu możesz przygotować grafik dla pracowników w godzinach 
+                    pracy obiektu od 08:00 do 20:00 uwzględniając zmienne zapotrzebowanie na ich 
+                    ilość w danych dniach tygodnia i miesiąca, a uwzględniając również potrzeby samych 
+                    pracowników pod kątem dni wolnych, preferencji zmian w konkretnych dniach.
+                    
+                    """);
+        System.out.println("[1] Lista pracowników");
+        System.out.println("[2] Dodaj pracownika");
+        System.out.println("[3] Usuń pracownika");
+        System.out.println("[4] Stwórz grafik");
+        System.out.println("[5] Użyj specjalnego kodu importu pracowników");
+        System.out.println("[6] Zakończ działanie programu");
+    }
+
+    private void employeeListMenuMessage(){
+        System.out.println("LISTA PRACOWNIKÓW");
+        System.out.println("[1] Lista wszytskich pracowników");
+        System.out.println("[2] Lista pracowników ratalnych");
+        System.out.println("[3] Lista kierowników");
+        System.out.println("[4] Wyjdź");
     }
 }
