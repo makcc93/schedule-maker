@@ -3,6 +3,7 @@ package pl.mateuszkruk;
 import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import pl.mateuszkruk.Employee.SpecialEmployeesSet;
 import pl.mateuszkruk.Schedule.DaysOfWeek;
 import pl.mateuszkruk.UserInput.InputHandler;
 
@@ -26,6 +27,11 @@ public class AppConfiguration {
     @Bean
     public InputHandler inputHandler() {
         return new InputHandler();
+    }
+
+    @Bean
+    public SpecialEmployeesSet specialEmployeesSet(){
+        return new SpecialEmployeesSet();
     }
 
 }

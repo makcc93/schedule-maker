@@ -1,7 +1,5 @@
 package pl.mateuszkruk.UserInput;
-import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Messages.DefaultInSwitch;
 import pl.mateuszkruk.Messages.NumberFormatExeption;
@@ -16,11 +14,26 @@ public class InputHandler {
 
     public String getString(String message){
         System.out.println(message);
-        return scanner.nextLine();
+
+        return scanner.nextLine().trim();
+
+//        return stringValidator("It cannot be empty! Try again.");
     }
 
     public String getString(){
-        return scanner.nextLine();
+
+        return stringValidator("It cannot be empty! Try again.");
+    }
+
+    private String stringValidator(String errorMessage){
+        String input = scanner.nextLine().trim();
+
+        while (input.isEmpty()){
+            System.out.println(errorMessage);
+            input = scanner.nextLine().trim();
+        }
+
+        return input;
     }
 
     public int getInt(String message){
@@ -86,27 +99,6 @@ public class InputHandler {
         String input = scanner.nextLine();
 
         try{
-            String[] numbers = input.split(",");
-
-            for (String number : numbers){
-                integers.add(Integer.valueOf(number.trim()));
-            }
-        }
-        catch(NumberFormatException e){
-            NumberFormatExeption.showMessage();
-            integers.clear();
-        }
-
-        return integers;
-    }
-
-    public List<Integer> getNewListOfIntegers(){
-        List<Integer> integers = new ArrayList<>();
-
-        System.out.print("Wpisz liczby oddzielone przecinkami (np. 1,2,3): ");
-        String input = scanner.nextLine();
-
-        try{
             List<String> days = Splitter.on(",")
                     .trimResults()
                     .omitEmptyStrings()
@@ -114,27 +106,6 @@ public class InputHandler {
 
             for (String day : days){
                 integers.add(Integer.valueOf(day));
-            }
-        }
-        catch(NumberFormatException e){
-            NumberFormatExeption.showMessage();
-            integers.clear();
-        }
-
-        return integers;
-    }
-
-    public List<Integer> getListOfIntegers(String message){
-        List<Integer> integers = new ArrayList<>();
-
-        System.out.print("Wpisz liczby oddzielone przecinkami (np. 1,2,3): " + message);
-        String input = scanner.nextLine();
-
-        try{
-            String[] numbers = input.split(",");
-
-            for (String number : numbers){
-                integers.add(Integer.valueOf(number.trim()));
             }
         }
         catch(NumberFormatException e){

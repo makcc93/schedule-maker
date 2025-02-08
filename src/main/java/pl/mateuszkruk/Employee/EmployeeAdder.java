@@ -11,9 +11,7 @@ public class EmployeeAdder implements EmployeeManagerActions {
         boolean isContinue = true;
 
         while (isContinue) {
-//            System.out.println("Podaj numer SAP pracownika, którego chcesz dodać:");
             String employeeSapNumber = inputHandler.getString("Podaj numer SAP pracownika, którego chcesz dodać:");
-
 
             if (employeeListsMatcher.getAllEmployees().contains(employeeListsMatcher.getEmployee(employeeSapNumber))) {
                 System.out.println("Pracownik o numerze SAP " + employeeSapNumber + " już istnieje!");

@@ -1,12 +1,10 @@
 package pl.mateuszkruk.Menu.StepsInMenu;
 
-import com.google.common.base.Joiner;
 import org.springframework.stereotype.Component;
 import pl.mateuszkruk.Messages.DrawLine;
 import pl.mateuszkruk.UserInput.InputHandler;
 import pl.mateuszkruk.Schedule.FirstDayAndLenghtOfMonth;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.StringJoiner;
 @Component
@@ -34,7 +32,7 @@ public class DaysOffFromWork {
                     "       Jeśli chcesz wpisać dni wolne od pracy w tym miesiącu (np. jakieś święto) wciśnij 1, jeśli nie wciśnij 0.");
 
             while (customFreeDay) {
-                List<Integer> days = inputHandler.getNewListOfIntegers(); //testing new feature
+                List<Integer> days = inputHandler.getListOfIntegers(); //testing new feature
                 StringJoiner stringJoiner = new StringJoiner(", ");
 
                 for (int day : days){

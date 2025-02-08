@@ -1,7 +1,7 @@
 package pl.mateuszkruk.Employee;
-import org.springframework.stereotype.Service;
+
 import pl.mateuszkruk.UserInput.InputHandler;
-@Service
+
 public class SpecialEmployeesSet implements EmployeeManagerActions{
 
     @Override
@@ -36,7 +36,7 @@ public class SpecialEmployeesSet implements EmployeeManagerActions{
         employeeListsMatcher.addEmployeeToList(employee13);
         employeeListsMatcher.addEmployeeToList(employee14);
 
-        System.out.println("Zestaw pracowników zaczytany poprawnie!" +
+        System.out.println("Zestaw testowy pracowników zaczytany poprawnie!" +
                 System.lineSeparator());
     }
 }
